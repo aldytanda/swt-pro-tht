@@ -52,19 +52,3 @@ To run test, run the following command:
 ```
 make test
 ```
-
-
-
-
-# Aldy's Notes swt-pro-tht
-SawitPro Take Home Test
-
-## TODO List
-### Code Structure
-    - handler
-    - repository
-    - api.yml
-    - database.sql
-### Run the Code
-    - changed kin-openapi version to 0.118.0 to match compatibility with go 1.19
-    
