@@ -1,0 +1,234 @@
+# This is the OpenAPI specification for your service. It is used to generate the client code.
+# To generate the server code, use the Gradle task `openApiGenerate`. The 
+# generated code will be placed in `build/generate-resources/main`.
+#
+# We will evaluate you based on how well you design your API.
+# 1. How well it follows REST principles.
+# 2. How easy it is to understand and use.
+#
+# References
+# 1. https://swagger.io/specification/
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: User Service
+  license:
+    name: MIT
+servers:
+  - url: http://localhost
+paths:
+  /hello:
+    get:
+      summary: This is just a test endpoint to get you started. Please delete this endpoint.
+      operationId: hello
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Test return
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/HelloResponse"
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /users:
+    post:
+      summary: Register a new user
+      operationId: register
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '201':
+          description: Successfuly created a user
+          content:
+            application/json:
+              schema:
+                $ref: 
+                  '#/components/schemas/RegisterResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      summary: Update a user
+      operationId: updateProfile
+      responses:
+        '200':
+          description: OK - Successfuly updated user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateProfileRequest'
+        '400':
+          description: Bad request - payload validation errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Unauthorized - request to user resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict - Dat already exists in system
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      summary: Get user profile
+      operationId: getProfile
+      responses:
+        '200':
+          description: Successfuly retrieved user profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetProfileResponse'
+        '403':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /login:
+    post:
+      summary: User login
+      operationId: login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '201':
+          description: Successfuly logged in
+          content:
+            application/json:
+              schema:
+                $ref:
+                  '#/components/schemas/LoginResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+
+components:
+  schemas:
+    HelloResponse:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+    ErrorResponse:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    ValidationError:
+      type: object
+      required:
+        - field_name
+        - err_rules
+      properties:
+        field_name:
+          type: string
+        err_rules:
+          type: array
+          items:
+            type: string
+    RegisterRequest:
+      type: object
+      required:
+        - name
+        - phone
+        - password
+      properties:
+        name:
+          type: string
+        phone:
+          type: string
+        password:
+          type: string
+    RegisterResponse:
+      type: object
+      required:
+        - id
+        - name
+        - phone
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        phone:
+          type: string
+    LoginRequest:
+      type: object
+      required:
+        - phone
+        - password
+      properties:
+        phone:
+          type: string
+        password:
+          type: string
+    LoginResponse:
+      type: object
+      required:
+        - token
+      properties:
+        token:
+          type: string
+    GetProfileResponse:
+      type: object
+      required:
+        - name
+        - phone
+        - count_login
+      properties:
+        name:
+          type: string
+        phone:
+          type: string
+        count_login:
+          type: integer
+    UpdateProfileRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        phone:
+          type: string
+        
+    
+    

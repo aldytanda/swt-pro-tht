@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "178558bf-c170-4da5-b025-da4ef0ad4d46",
+		"name": "SawitPro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4304023"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Aldy 3\",\n    \"phone\": \"+62813766712\",\n    \"password\": \"Abc123!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"phone\": \"+62813766712\",\n    \"password\": \"Abc123!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Profile",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTgxNDgyNDEsInN1YiI6IjIiLCJ1c2VyIjoiQWxkeSAyIn0.FwzhCh2Ex1aRYqA8Qv4OKjEJOGjDbwXyAOeEDM0S-GI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Aldy Updated 2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get My Profile",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTgxNDk5MzIsInN1YiI6IjMiLCJ1c2VyIjoiQWxkeSAzIn0.4757K0ka0nAMjY1V700m3LziCXgjqB_kyMtqeTLj5g0",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "localhost:8080",
+			"type": "string"
+		}
+	]
+}
